@@ -1,0 +1,57 @@
+<div *ngIf="isLoading">Loading...</div>
+<form [formGroup]="eventForm" (ngSubmit)="saveEvent()">
+  <div>
+    <label for="title">Title:</label>
+    <input id="title" formControlName="title" type="text" />
+    <div
+      *ngIf="eventForm.get('title')?.invalid && eventForm.get('title')?.touched"
+    >
+      <small class="text-danger">Title is required.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="description">Description:</label>
+    <textarea id="description" formControlName="description"></textarea>
+  </div>
+
+  <div>
+    <label for="location">Location:</label>
+    <input id="location" formControlName="location" type="text" />
+    <div
+      *ngIf="
+        eventForm.get('location')?.invalid && eventForm.get('location')?.touched
+      "
+    >
+      <small class="text-danger">Location is required.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="startDate">Start Date:</label>
+    <input id="startDate" formControlName="startDate" type="datetime-local" />
+  </div>
+
+  <div>
+    <label for="endDate">End Date:</label>
+    <input id="endDate" formControlName="endDate" type="datetime-local" />
+  </div>
+
+  <div>
+    <label for="isPaid">Is Paid:</label>
+    <input id="isPaid" formControlName="isPaid" type="checkbox" />
+  </div>
+
+  <div>
+    <label for="price">Price:</label>
+    <input id="price" formControlName="price" type="number" />
+    <div
+      *ngIf="eventForm.get('price')?.invalid && eventForm.get('price')?.touched"
+    >
+      <small class="text-danger">Price is required.</small>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="eventForm.invalid">Save</button>
+  <button type="button" (click)="deleteEvent()" *ngIf="eventId">Delete</button>
+</form>
