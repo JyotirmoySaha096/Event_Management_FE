@@ -1,0 +1,32 @@
+<div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label px-2">{{FieldTitle}}</label>
+    <input 
+      type="email"
+      class="form-control"
+      id="exampleInputEmail1"
+      formControlName="email"
+      aria-describedby="emailHelp"
+      [placeholder]="Placeholder"
+    />
+    <div
+      *ngIf="!isFieldValid"
+      class="text-danger px-2"
+    >
+      <small *ngFor="let error from errors"
+        >{{error.message}}</small
+      >
+      <!-- <small *
+        >Invalid email format.</small
+      > -->
+    </div>
+    <div id="emailHelp" class="form-text px-2">
+      {{description}}
+    </div>
+  </div>
+
+  <!-- form.get('email')?.touched && form.get('email')?.invalid -->
+  <!-- ngIf="form.get('email')?.hasError('required')" -->
+  <!-- ngIf="form.get('email')?.hasError('email')" -->
+  <!-- Email is required. -->
+  <!-- We'll never share your email with anyone else. -->
+  <!-- Email address -->

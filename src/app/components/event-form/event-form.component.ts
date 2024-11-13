@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventService } from 'src/app/services/event.service';
-import { EventBO } from 'src/app/Models/event-bo.model';
+import { EventRecord } from 'src/app/Models/event-record.model';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -10,10 +10,17 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./event-form.component.css']
 })
 export class EventFormComponent {
-  eventForm!: FormGroup;
+  eventForm =this.fb.group({
+    title: ['', Validators.required],
+    description: [''],
+    location: ['', Validators.required],
+    startDate: ['', Validators.required],
+    endDate: ['', Validators.required],
+    price: [0, [Validators.required,Validators.min(0)]]
+  });
   eventId: number | null = null;
   isLoading = false;
-
+  organizerId = localStorage.getItem('authToken');
   constructor(
     private fb: FormBuilder,
     private eventService: EventService,
@@ -22,7 +29,6 @@ export class EventFormComponent {
   ) {}
 
   ngOnInit(): void {
-    this.initializeForm();
 
     // Check if we're editing an existing event
     this.route.paramMap.subscribe((params) => {
@@ -34,22 +40,10 @@ export class EventFormComponent {
     });
   }
 
-  private initializeForm(): void {
-    this.eventForm = this.fb.group({
-      title: ['', Validators.required],
-      description: [''],
-      location: ['', Validators.required],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
-      isPaid: [false],
-      price: [0, Validators.required]
-    });
-  }
-
   loadEventData(): void {
     if (this.eventId) {
       this.isLoading = true;
-      this.eventService.getEventById(this.eventId).subscribe((event: EventBO) => {
+      this.eventService.getEventById(this.eventId).subscribe((event: EventRecord) => {
         this.eventForm.patchValue(event);  // Patches form with data
         this.isLoading = false;
       });
@@ -61,16 +55,17 @@ export class EventFormComponent {
       return;
     }
 
-    const eventData: EventBO = this.eventForm.value;
+    const eventData: EventRecord = this.eventForm.value as EventRecord;
     if (this.eventId) {
       // Update existing event
       this.eventService.updateEvent(this.eventId, eventData).subscribe(() => {
-        this.router.navigate(['/events']);  // Navigate to events list after saving
+        this.router.navigate([`/organizer/${this.organizerId}`]);  // Navigate to events list after saving
       });
     } else {
       // Create new event
+      eventData.organizerId=Number.parseInt(this.organizerId||"");
       this.eventService.createEvent(eventData).subscribe(() => {
-        this.router.navigate(['/events']);
+        this.router.navigate([`/organizer/${this.organizerId}`]);
       });
     }
   }
@@ -78,7 +73,7 @@ export class EventFormComponent {
   deleteEvent(): void {
     if (this.eventId) {
       this.eventService.deleteEvent(this.eventId).subscribe(() => {
-        this.router.navigate(['/events']);
+        this.router.navigate([`/organizer/${this.organizerId}`]);
       });
     }
   }

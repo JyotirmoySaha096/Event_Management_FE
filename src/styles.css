@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+}
+
+:root{
+    --bg-color-primary:rgba(193, 200, 219, 0.178);
+    --text-heading:rgb(6 65 115);
+    --form-green-bg: rgb(226 238 224);
+    --form-green-color: rgb(61 143 45);
+    --form-purple-bg:rgb(240 235 248);
+    --form-purple-color:rgb(103 58 183);
+    --table-purple-bg:rgba(203, 203, 238, 0.427);
+    --table-purple-color-dark:rgba(104, 58, 183, 0.662);
+    --table-purple-header-bg:rgb(187, 187, 247);
+    --table-purple-color:rgb(103 58 183);
+}

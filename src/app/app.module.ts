@@ -8,18 +8,25 @@ import { RegistrationModule } from './modules/registration/registration.module';
 import { EventsModule } from './modules/events/events.module';
 import { UsersModule } from './modules/users/users.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NavComponent } from './components/nav/nav.component';
+import { UserCardComponent } from './components/user-card/user-card.component';
+import { OrganizersModule } from './modules/organizers/organizers.module';
+import { AuthService } from './services/auth.service';
+import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginFormComponent,
+    // LoginFormComponent,
+    NavComponent,
+    RegistrationFormComponent,
+    // UserCardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RegistrationModule,
-    // EventsModule,
-    UsersModule,
+    // RegistrationModule,
+    // UsersModule,
     HttpClientModule
   ],
   providers: [],

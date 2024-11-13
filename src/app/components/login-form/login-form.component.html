@@ -1,1 +1,72 @@
-<p>login-form works!</p>
+<div class="container">
+  <div class="heading"><h4 class="text-center">Login Form</h4></div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3 field-item">
+      <label for="exampleInputEmail1" class="form-label">Email address <span class="text-danger">*</span></label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        formControlName="email"
+        aria-describedby="emailHelp"
+        placeholder="Enter you email"
+      />
+      <div
+        *ngIf="form.get('email')?.touched && form.get('email')?.invalid"
+        class="text-danger"
+      >
+        <small *ngIf="form.get('email')?.hasError('required')"
+          >Email is required.</small
+        >
+        <small *ngIf="form.get('email')?.hasError('email')"
+          >Invalid email format.</small
+        >
+      </div>
+      <div id="emailHelp" class="form-text">
+        We'll never share your email with anyone else.
+      </div>
+    </div>
+
+    <div class="mb-3 field-item">
+      <label for="exampleInputPassword1" class="form-label">Password <span class="text-danger">*</span></label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        formControlName="password"
+        placeholder="Enter you password"
+      />
+      <div
+        *ngIf="form.get('password')?.touched && form.get('password')?.invalid"
+        class="text-danger"
+      >
+        <small *ngIf="form.get('password')?.hasError('required')"
+          >Password is required.</small
+        >
+      </div>
+    </div>
+
+    <div class="mb-3 form-check">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="exampleCheck1"
+        formControlName="rememberMe"
+      />
+      <label class="form-check-label" for="exampleCheck1">Remember me</label>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary mb-3"
+      [disabled]="form.invalid"
+    >
+      Submit
+    </button>
+
+    <div class="">
+      <span>Didn't signed up? </span><span>Signup now here </span
+      ><a routerLink="/register/signup">Signup</a>
+    </div>
+  </form>
+</div>

@@ -4,6 +4,8 @@ import { EventFormComponent } from 'src/app/components/event-form/event-form.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { EventsRoutingModule } from './events-routing/events-routing.module';
+import { EventListComponent } from 'src/app/components/event-list/event-list.component';
+import { UtilitiesModule } from '../utilities/utilities.module';
 
 
 
@@ -12,7 +14,9 @@ import { EventsRoutingModule } from './events-routing/events-routing.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    EventsRoutingModule
-  ]
+    EventsRoutingModule,
+    UtilitiesModule
+  ],
+  exports:[EventFormComponent]
 })
 export class EventsModule { }

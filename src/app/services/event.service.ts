@@ -1,8 +1,7 @@
-// src/app/event.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { EventBO } from '../Models/event-bo.model'; // Create a model for EventBO
+import { EventRecord } from '../Models/event-record.model'; // Create a model for EventRecord
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +12,27 @@ export class EventService {
   constructor(private http: HttpClient) {}
 
   // Get all events
-  getEvents(): Observable<EventBO[]> {
-    return this.http.get<EventBO[]>(this.apiUrl);
+  getEvents(): Observable<EventRecord[]> {
+    return this.http.get<EventRecord[]>(this.apiUrl);
+  }
+
+  getEventsByOrganizerId(organizerId:string):Observable<EventRecord[]> {
+    return this.http.get<EventRecord[]>(`${this.apiUrl}/organizer/${organizerId}`);
   }
 
   // Get a specific event by ID
-  getEventById(id: number): Observable<EventBO> {
-    return this.http.get<EventBO>(`${this.apiUrl}/${id}`);
+  getEventById(id: number): Observable<EventRecord> {
+    return this.http.get<EventRecord>(`${this.apiUrl}/${id}`);
   }
 
   // Create a new event
-  createEvent(event: EventBO): Observable<EventBO> {
-    return this.http.post<EventBO>(this.apiUrl, event);
+  createEvent(event: EventRecord): Observable<EventRecord> {
+    return this.http.post<EventRecord>(this.apiUrl, event);
   }
 
   // Update an existing event
-  updateEvent(id: number, event: EventBO): Observable<EventBO> {
-    return this.http.put<EventBO>(`${this.apiUrl}/${id}`, event);
+  updateEvent(id: number, event: EventRecord): Observable<EventRecord> {
+    return this.http.put<EventRecord>(`${this.apiUrl}/${id}`, event);
   }
 
   // Delete an event

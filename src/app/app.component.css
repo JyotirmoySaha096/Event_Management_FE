@@ -1,0 +1,17 @@
+:host{
+    background-color: var(--bg-color-primary);
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.navigation{
+    height: 9%;
+    width: 100%;
+}
+
+.content{
+    height: 91%;
+    width: 100%;
+    overflow: auto;
+}
