@@ -17,14 +17,6 @@ export class RegistrationService {
   }
 
   postRegistrationForm(registrationForm:RegistrationForm){
-    console.log(registrationForm);
-    // this.getRegistrationFormByEventId(registrationForm.eventId).subscribe((data)=>{
-    //   if(data){
-    //      return this.http.put(`${this.apiURL}/${registrationForm.eventId}`,registrationForm).subscribe();
-    //   }else{
-    //      return this.http.post(this.apiURL,registrationForm).subscribe();
-    //   }
-    // })
     return this.http.post(this.apiURL,registrationForm);
   }
 }

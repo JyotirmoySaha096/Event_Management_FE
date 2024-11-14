@@ -198,7 +198,7 @@ export class RegistrationFormComponent {
       formFields: formValue.formFields.map((field: FormField) => {
         console.log(field.fieldOptions);
         return {
-          fieldId: field.formId || 0,
+          fieldId: field.fieldId || 0,
           formId: this.formId || 0,
           fieldName: field.fieldName,
           fieldType: field.fieldType,

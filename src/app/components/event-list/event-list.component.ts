@@ -38,18 +38,6 @@ export class EventListComponent {
   handleEdit(eventId: number) {
     this.router.navigate(['/event/edit', eventId]);
   }
-  // handleDisplayForm(eventId: number) {
-  //   this.registrationService.getRegistrationFormByEventId(eventId).subscribe(
-  //     (res: any) => {
-  //       this.router.navigate(['/form', res.formId],{queryParams:{eventId:eventId}});
-  //     },
-  //     (error) => {
-  //       if(error.error.message == "No form found"){
-  //         this.router.navigate(['/form'],{queryParams:{eventId:eventId}});
-  //       }
-  //     }
-  //   );
-  // }
   handleDisplayForm(eventId: number) {
     this.router.navigate(['/form'],{queryParams:{eventId:eventId}});
   }
