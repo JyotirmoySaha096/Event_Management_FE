@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'organizer', loadChildren: ()=>import('./modules/organizers/organizers.module').then(m=>m.OrganizersModule) },
   { path: 'user', loadChildren: ()=>import('./modules/users/users.module').then(m=>m.UsersModule) },
   { path: 'register', loadChildren: ()=>import('./modules/registration/registration.module').then(m=>m.RegistrationModule) },
+  {path:'form', loadChildren: ()=>import('./modules/registration-form/registration-form.module').then(m=>m.RegistrationFormModule)},
   { path: '', redirectTo: '/', pathMatch: 'full' }
 ];
 

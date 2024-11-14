@@ -1,1 +1,127 @@
-<p>registration-form works!</p>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Create Registration Form</h2>
+
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <!-- Event ID field -->
+    <div class="mb-3">
+      <label for="eventId" class="form-label">Event ID</label>
+      <input id="eventId" formControlName="eventId" class="form-control"/>
+      <div
+        *ngIf="
+          registrationForm.get('eventId')?.invalid &&
+          registrationForm.get('eventId')?.touched
+        "
+        class="text-danger"
+      >
+        Event ID is required.
+      </div>
+    </div>
+
+    <!-- Dynamically generated form fields -->
+    <div formArrayName="formFields">
+      <div
+        *ngFor="let field of formFields.controls; let i = index"
+        [formGroupName]="i"
+        class="mb-4"
+      >
+        <div class="mb-3">
+          <label class="form-label">{{ field.get("fieldName")?.value }}</label>
+
+          <!-- Text Input Field -->
+          <div *ngIf="field.get('fieldType')?.value === 'text'">
+            <input
+              formControlName="fieldValue"
+              class="form-control"
+              [type]="
+                field.get('fieldType')?.value === 'text' ? 'text' : 'hidden'
+              "
+            />
+          </div>
+
+          <!-- Dropdown Field -->
+          <div *ngIf="field.get('fieldType')?.value === 'dropdown'">
+            <select formControlName="fieldValue" class="form-select">
+              <option
+                *ngFor="let option of field.get('fieldOptions')?.value"
+                [value]="option.fieldOptionValue"
+              >
+                {{ option.fieldOptionValue }}
+              </option>
+            </select>
+          </div>
+
+          <button
+            type="button"
+            (click)="deleteFormField(i)"
+            class="btn btn-danger mt-2"
+          >
+            Delete Field
+          </button>
+        </div> 
+
+        <!-- Dropdown Options (for editing) -->
+        <div *ngIf="field.get('fieldType')?.value === 'dropdown'" class="ms-3">
+          <label class="form-label">Dropdown Options</label>
+          <div formArrayName="fieldOptions">
+            <div
+              *ngFor="
+                let option of fieldOptions(field);
+                let j = index
+              "
+              [formGroupName]="j"
+              class="input-group mb-2"
+            >
+              <input formControlName="fieldOptionValue" class="form-control" />
+              <button
+                type="button"
+                (click)="deleteFieldOption(i, j)"
+                class="btn btn-outline-danger"
+              >
+                Delete Option
+              </button>
+            </div>
+          </div>
+          <button
+            type="button"
+            (click)="addFieldOptions(field, [{fieldId:0,optionId:0,optionText:'New Option'}])"
+            class="btn btn-secondary mt-2"
+          >
+            Add Option
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons for adding fields -->
+    <div class="mt-4">
+      <button
+        type="button"
+        (click)="addFormField(0,this.formId||0,'text', 'New Text Field', true)"
+        class="btn btn-primary me-2"
+      >
+        Add Text Field
+      </button>
+      <button
+        type="button"
+        (click)="
+          addFormField(0,this.formId||0,'dropdown', 'New Dropdown', true, [
+          {fieldId:0,optionId:0,optionText:'Option 1'},
+          {fieldId:0,optionId:0,optionText:'Option 2'}
+          ])
+        "
+        class="btn btn-info"
+      >
+        Add Dropdown
+      </button>
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      type="submit"
+      class="btn btn-success mt-4"
+      [disabled]="registrationForm.invalid"
+    >
+      Submit
+    </button>
+  </form>
+</div>

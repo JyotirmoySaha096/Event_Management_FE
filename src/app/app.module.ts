@@ -12,14 +12,12 @@ import { NavComponent } from './components/nav/nav.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { OrganizersModule } from './modules/organizers/organizers.module';
 import { AuthService } from './services/auth.service';
-import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     // LoginFormComponent,
     NavComponent,
-    RegistrationFormComponent,
     // UserCardComponent,
   ],
   imports: [
