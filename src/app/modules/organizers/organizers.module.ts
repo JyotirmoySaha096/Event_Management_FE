@@ -9,7 +9,7 @@ import { UtilitiesModule } from '../utilities/utilities.module';
 
 const routes: Routes = [
   {path:':id', component:OrganizerDashboardComponent},
-  // {path: '', redirectTo:"1", pathMatch:"full"}
+  // {path: '', redirectTo: localStorage.getItem('authToken')||'0', pathMatch:"full"}
 ];
 
 @NgModule({

@@ -11,6 +11,7 @@
         <th scope="col" class="custom-thead">Description</th>
         <th scope="col" class="custom-thead">Price</th>
         <th *ngIf="fromOrganizer" scope="col" class="custom-thead">Change event</th>
+        <th scope="col" class="custom-thead">Participate</th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +24,7 @@
         <td class="custom-tbody">{{ event.description }}</td>
         <td class="custom-tbody">{{ event.price }}</td>
         <td *ngIf="fromOrganizer" class="custom-tbody"><span class="link" (click)="handleEdit(event.eventId)">Edit-Event</span>&nbsp;<span class="link" (click)="handleDisplayForm(event.eventId)">Form</span></td>
+        <td class="custom-tbody"><span class="link" (click)="handleParticipate(event.eventId)">Register</span></td>
       </tr>
       <!-- <tr class="event-item" *ngFor="let event of events; let i = index">
         <th scope="row" class="custom-tbody">{{ i + 1 }}</th>

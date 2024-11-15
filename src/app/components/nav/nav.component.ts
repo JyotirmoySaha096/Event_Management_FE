@@ -13,7 +13,7 @@ export class NavComponent {
   loggedIn!:boolean;
 
   constructor(private route: ActivatedRoute, private authService: AuthService, private router:Router) {
-    this.authService.loggedInState.subscribe(val=>this.loggedIn=val.isLoggedIn);
+    this.authService.loggedInState.subscribe(val=>{this.loggedIn=val.isLoggedIn,this.id=val.authToken});
   }
   // handleLogin(){
   //   // this.authService.isLoggedIn.next(!this.loggedIn);
@@ -24,8 +24,8 @@ export class NavComponent {
     this.router.navigate(["/"]);
   }
 
-  ngOnInit(): void {
-    // Get the 'id' parameter from the route
-    this.id = this.route.snapshot.paramMap.get('id');
-  }
+  // ngOnInit(): void {
+  //   // Get the 'id' parameter from the route
+  //   this.id = this.route.snapshot.paramMap.get('id');
+  // }
 }

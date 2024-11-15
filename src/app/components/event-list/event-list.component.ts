@@ -41,4 +41,12 @@ export class EventListComponent {
   handleDisplayForm(eventId: number) {
     this.router.navigate(['/form'],{queryParams:{eventId:eventId}});
   }
+  handleParticipate(eventId: number) {
+    this.router.navigate(['/register/participate'],{queryParams:{eventId:eventId,userId:localStorage.getItem('authToken')}});
+    // this.registrationService
+    //   .registerForEvent(eventId)
+    //   .subscribe((response) => {
+    //     console.log(response);
+    //   })
+  }
 }

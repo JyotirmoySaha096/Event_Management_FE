@@ -1,14 +1,16 @@
-<div class="card mb-3">
-    <div class="row gap-1">
-      <div class="col-md-3 d-flex justify-content-center align-items-center">
-        <div class="user-logo-container"><span class="user-logo">U</span></div>
-      </div>
-      <div class="col-md-8">
-        <div class="card-body px-0">
-          <h5 class="card-title">Organizer name</h5>
-          <p class="card-text">Organizer details</p>
-          <p class="card-text"><small class="text-body-secondary">Organization name</small></p>
-        </div>
+<div class="card pb-4">
+  <div class="row gap-1">
+    <div class="col-md-3 d-flex justify-content-center align-items-center">
+      <div class="user-logo-container"><span class="user-logo">{{user&& user.name.slice(0,1).toUpperCase()}}</span></div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body px-0">
+        <h5 class="card-title">{{user && user.name}}</h5>
+        <p class="card-text">{{user && user.email}}</p>
+        <p class="card-text"><small class="text-body-secondary">User Description</small></p>
+        <button type="button" class="btn btn-primary m-1" routerLink="/event/all-events">All Events</button>
+        <!-- <button type="button" class="btn btn-primary m-1" routerLink="/event/all-events">All Events</button> -->
       </div>
     </div>
   </div>
+</div>
