@@ -12,11 +12,18 @@ export class RegistrationService {
   getRegistrationFormByFormId(formId:number){
     return this.http.get(`${this.apiURL}/${formId}`);
   }
-  getRegistrationFormByEventId(eventId:number){
+  getRegistrationFormIdByEventId(eventId:number){
     return this.http.get(`${this.apiURL}/formIdByEventId?eventId=${eventId}`);
+  }
+  getRegistrationFormByEventId(eventId:number){
+    return this.http.get(`${this.apiURL}/formByEventId?eventId=${eventId}`);
   }
 
   postRegistrationForm(registrationForm:RegistrationForm){
     return this.http.post(this.apiURL,registrationForm);
+  }
+
+  getRegistrationFormByEventIdAndUserId(eventId:number,userId:number){
+    return this.http.get(`${this.apiURL}/formIdByEventIdAndUserId?eventId=${eventId}&userId=${userId}`);
   }
 }

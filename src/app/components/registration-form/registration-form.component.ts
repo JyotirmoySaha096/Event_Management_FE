@@ -42,7 +42,7 @@ export class RegistrationFormComponent {
       console.log('Event ID:', this.eventId); // Optionally log the eventId to the console
       if (this.eventId) {
         this.registrationService
-          .getRegistrationFormByEventId(this.eventId)
+          .getRegistrationFormIdByEventId(this.eventId)
           .subscribe(
             (res: any) => {
               this.router.navigate(['/form', res.formId], {

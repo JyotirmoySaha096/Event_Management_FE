@@ -1,3 +1,32 @@
-<p>participate-form works!</p>
-{{eventId}}
-{{userId}}
+<form [formGroup]="participationForm" (ngSubmit)="onSubmit()">
+    <div formArrayName="formFields">
+      <div *ngFor="let field of formFields; let i = index">
+        <div [formGroupName]="i">
+          <label class="form-label">{{ field.get("fieldName")?.value }}</label>
+  
+          <!-- Text Input Field -->
+          <div *ngIf="field.get('fieldType')?.value === 'text'">
+            <input
+              formControlName="fieldValue"
+              class="form-control"
+              type="text"
+            />
+          </div>
+  
+          <!-- Dropdown Field -->
+          <div *ngIf="field.get('fieldType')?.value === 'dropdown'">
+            <select formControlName="fieldValue" class="form-select">
+              <option
+                *ngFor="let option of field.get('fieldOptions')?.value"
+                [value]="option.optionValue"
+              >
+                {{ option.optionValue }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+  </form>
+  

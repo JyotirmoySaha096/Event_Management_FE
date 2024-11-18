@@ -32,7 +32,7 @@ export class EventListComponent {
               '$values' as keyof EventRecord[]
             ] as unknown as EventRecord[])
         );
-      console.log(this.events);
+      // console.log(this.events);
     }
   }
   handleEdit(eventId: number) {
