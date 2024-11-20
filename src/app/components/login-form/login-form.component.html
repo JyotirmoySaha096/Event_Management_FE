@@ -1,5 +1,13 @@
 <div class="container">
   <div class="heading"><h4 class="text-center">Login Form</h4></div>
+  <div
+  *ngIf="alertClass !== '' && alertMessage !== ''"
+  class="alert position-absolute top-10 start-0 w-100 text-center z-1"
+  [ngClass]="alertClass"
+  role="alert"
+>
+  {{ alertMessage }}
+</div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-3 field-item">
       <label for="exampleInputEmail1" class="form-label">Email address <span class="text-danger">*</span></label>

@@ -8,8 +8,12 @@
 }
 
 div.organizer-card{
-    width: 50%;
+    width: 100%;
     height: 35%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2%;
 }
 
 div.event-list{

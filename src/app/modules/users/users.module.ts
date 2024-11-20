@@ -8,7 +8,6 @@ import { UtilitiesModule } from '../utilities/utilities.module';
 
 const routes: Routes = [
   {path:':id', component:UserDashboardComponent},
-  // {path: '', redirectTo: localStorage.getItem('authToken')||'0', pathMatch:"full"}
 ];
 
 @NgModule({

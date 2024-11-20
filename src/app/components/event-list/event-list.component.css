@@ -36,11 +36,12 @@
 .custom-tbody {
     background-color: var(--table-purple-bg);
     color: black;
-    border-color: white;
+    border-color: white;    
 }
 
 .event-item{
     border-bottom: 2px solid white;
+    cursor: pointer;
 }
 
 .link{

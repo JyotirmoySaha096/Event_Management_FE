@@ -30,7 +30,6 @@ export class UserDashboardComponent {
         if (state.isLoggedIn && this.userId && state.authToken == this.userId) {
           this.userService.getUserById(this.userId).subscribe((user: User) => {
             this.user = user;
-            console.log(user);
             this.eventService.getEvents().subscribe((events) => {
               this.events = events[
                 '$values' as keyof EventRecord[]

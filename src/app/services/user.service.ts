@@ -12,11 +12,19 @@ export class UserService {
     
   }
 
+  getUsers(){
+    return this.http.get<{organizers:User[]}>(`${this.userUrl}`);
+  }
+
   getUserById(id:string){
     return this.http.get<User>(`${this.userUrl}/${id}`);
   }
 
   addUser(user:UserCred){
     return this.http.post<boolean>(this.userUrl,user);
+  }
+
+  updateUserRole(userEmail:string,roleId:string){
+    return this.http.put(`${this.userUrl}/role`,{email:userEmail,roleId});
   }
 }

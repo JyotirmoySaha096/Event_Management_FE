@@ -1,0 +1,51 @@
+<div class="card px-4">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-body px-0">
+        <h5 class="card-title">Manage Organizers</h5>
+        <div
+          *ngIf="alertMessage"
+          class="alert position-fixed top-0 start-0 w-100 text-center mt-5"
+          [ngClass]="alertClass"
+          role="alert"
+        >
+          {{ alertMessage }}
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="user-item"
+              *ngFor="let organizer of organizers; let i = index"
+            >
+              <th scope="row" class="custom-tbody">{{ i + 1 }}</th>
+              <td class="custom-tbody">{{ organizer.name }}</td>
+              <td class="custom-tbody">{{ organizer.email }}</td>
+              <td class="custom-tbody">
+                <select
+                  #roleSelect
+                  class="form-select"
+                  aria-label="Default select example"
+                  [name]="i"
+                  [value]="organizer.role.roleId"
+                  (change)="handleRoleChange(organizer.email, $event, i)"
+                  [disabled]="disabled"
+                >
+                  <option value="2">User</option>
+                  <option value="3">Organizer</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

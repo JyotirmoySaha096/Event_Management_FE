@@ -10,21 +10,76 @@
         <th scope="col" class="custom-thead">End Date</th>
         <th scope="col" class="custom-thead">Description</th>
         <th scope="col" class="custom-thead">Price</th>
-        <th *ngIf="fromOrganizer" scope="col" class="custom-thead">Change event</th>
+        <th
+          *ngIf="fromOrganizer"
+          scope="col"
+          class="custom-thead d-flex align-items-center"
+        >
+          Change event
+        </th>
+        <th *ngIf="fromOrganizer" scope="col" class="custom-thead">
+          Participants
+        </th>
         <th scope="col" class="custom-thead">Participate</th>
       </tr>
     </thead>
     <tbody>
       <tr class="event-item" *ngFor="let event of events; let i = index">
         <th scope="row" class="custom-tbody">{{ i + 1 }}</th>
-        <td class="custom-tbody">{{ event.title }}</td>
-        <td class="custom-tbody">{{ event.location }}</td>
-        <td class="custom-tbody">{{ event.startDate }}</td>
-        <td class="custom-tbody">{{ event.endDate }}</td>
-        <td class="custom-tbody">{{ event.description }}</td>
-        <td class="custom-tbody">{{ event.price }}</td>
-        <td *ngIf="fromOrganizer" class="custom-tbody"><span class="link" (click)="handleEdit(event.eventId)">Edit-Event</span>&nbsp;<span class="link" (click)="handleDisplayForm(event.eventId)">Form</span></td>
-        <td class="custom-tbody"><span class="link" (click)="handleParticipate(event.eventId)">Register</span></td>
+        <td class="custom-tbody" [title]="event.title">{{ event.title.length > 20
+          ? event.title.slice(0, 20) + "..."
+          : event.title }}</td>
+        <td class="custom-tbody" [title]="event.location">
+          {{
+            event.location.length > 20
+              ? event.location.slice(0, 20) + "..."
+              : event.location
+          }}
+        </td>
+        <td class="custom-tbody" [title]="event.startDate">
+          {{ event.startDate }}
+        </td>
+        <td class="custom-tbody" [title]="event.endDate">
+          {{ event.endDate }}
+        </td>
+        <td class="custom-tbody" [title]="event.description">
+          {{ event.description.length > 20
+            ? event.description.slice(0, 20) + "..."
+            : event.description }}
+        </td>
+        <td class="custom-tbody" [title]="event.price">{{ event.price }}</td>
+        <td
+          *ngIf="fromOrganizer"
+          class="custom-tbody d-flex align-items-center"
+        >
+          <span
+            class="link"
+            (click)="handleEdit(event.eventId)"
+            title="Edit your event"
+            >Edit-event</span
+          >&nbsp;&nbsp;<span
+            class="link"
+            (click)="handleDisplayForm(event.eventId)"
+            title="Edit your event form"
+            >Form</span
+          >
+        </td>
+        <td *ngIf="fromOrganizer" class="custom-tbody">
+          <span
+            class="link"
+            (click)="handleShowParticipants(event.eventId)"
+            title="Register in the event"
+            >Participants</span
+          >
+        </td>
+        <td class="custom-tbody">
+          <span
+            class="link"
+            (click)="handleParticipate(event.eventId)"
+            title="Register in the event"
+            >Register</span
+          >
+        </td>
       </tr>
       <!-- <tr class="event-item" *ngFor="let event of events; let i = index">
         <th scope="row" class="custom-tbody">{{ i + 1 }}</th>

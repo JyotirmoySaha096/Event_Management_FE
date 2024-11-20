@@ -11,6 +11,7 @@ import { ConfigureService } from 'src/app/services/configure.service';
 export class OrganizerCardComponent {
   id!: string;
   @Input() organizer!: User;
+  @Input() isSuperAdmin!: boolean;
   constructor(private router:Router,private configure:ConfigureService){}
   handleCreateEvent() {
     this.router.navigate(['/event/create']);

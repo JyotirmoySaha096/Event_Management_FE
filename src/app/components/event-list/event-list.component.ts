@@ -32,7 +32,6 @@ export class EventListComponent {
               '$values' as keyof EventRecord[]
             ] as unknown as EventRecord[])
         );
-      // console.log(this.events);
     }
   }
   handleEdit(eventId: number) {
@@ -48,5 +47,8 @@ export class EventListComponent {
     //   .subscribe((response) => {
     //     console.log(response);
     //   })
+  }
+  handleShowParticipants(eventId: number) {
+    this.router.navigate(['/register/participants'],{queryParams:{eventId:eventId}});
   }
 }

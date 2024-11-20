@@ -1,3 +1,12 @@
-<div class="organizer-card"><app-organizer-card [organizer]="organizer"></app-organizer-card></div>
+<div class="organizer-card">
+  <app-organizer-card [organizer]="organizer" [isSuperAdmin]="isSuperAdmin"></app-organizer-card>
+  <app-manage-organizer-table *ngIf="isSuperAdmin"></app-manage-organizer-table>
+</div>
 
-<div class="event-list"><app-event-list [events]="events" title="My Events:" [fromOrganizer]="true"></app-event-list></div>
+<div class="event-list">
+  <app-event-list
+    [events]="events"
+    title="My Events:"
+    [fromOrganizer]="true"
+  ></app-event-list>
+</div>

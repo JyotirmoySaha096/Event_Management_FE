@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventRecord } from 'src/app/Models/event-record.model';
 import { User } from 'src/app/Models/user.model';
@@ -15,6 +15,7 @@ export class OrganizerDashboardComponent {
   events!: EventRecord[];
   organizer!: User;
   organizerId!: string | null;
+  isSuperAdmin:boolean = false;
   constructor(
     private eventService: EventService,
     private authService: AuthService,
@@ -32,9 +33,10 @@ export class OrganizerDashboardComponent {
             .getUserById(this.organizerId)
             .subscribe((user: User) => {
               console.log(user);
-              if (user.role.roleName != 'Organizer') {
-                this.router.navigate(['/']);
-              } else {
+              if (user.role.roleName == 'Organizer'||user.role.roleName == 'Admin') {
+                if(user.role.roleName == 'Admin'){
+                  this.isSuperAdmin = true;
+                }
                 this.organizer = user;
                 this.eventService
                   .getEventsByOrganizerId(this.organizerId!)
@@ -43,10 +45,14 @@ export class OrganizerDashboardComponent {
                       '$values' as keyof EventRecord[]
                     ] as unknown as EventRecord[];
                   });
+                
+              }
+              else {
+                this.router.navigate(['/permission-denied']);
               }
             });
         }else{
-          this.router.navigate(['/']);
+          this.router.navigate(['/permission-denied']);
         }
       });
     }
