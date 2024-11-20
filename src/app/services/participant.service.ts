@@ -12,7 +12,9 @@ export class ParticipantService {
   getParticipantByParticipantId(id:number){
     return this.http.get(`${this.apiURL}/${id}`);
   }
-  getPaticipantsByEventId(eventId:number){}
+  getPaticipantsByEventId(eventId:number){
+    return this.http.get(`${this.apiURL}/getAllByEventId?eventId=${eventId}`);
+  }
   getPaticipantsByUserId(userId:number){}
 
   getParticipantIdByEventIdAndUserId(eventId:number,userId:number){

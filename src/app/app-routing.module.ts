@@ -55,6 +55,7 @@ const routes: Routes = [
         (m) => m.OrganizerPermissionModule
       ),
   },
+  {path:'participants',loadChildren:()=>import('./modules/participants/participants.module').then(m=>m.ParticipantsModule)},
   { path: '', component:HomeComponent, pathMatch: 'full' },
 ];
 

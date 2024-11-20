@@ -1,0 +1,50 @@
+<div class="table-responsive table-bordered rounded p-4">
+  <div class="title">Participants:</div>
+  <table class="table table-bordered rounded">
+    <thead>
+      <tr>
+        <th scope="col" class="custom-thead">#</th>
+        <th scope="col" class="custom-thead">Participant Id</th>
+        <th scope="col" class="custom-thead">Registration Code</th>
+        <th scope="col" class="custom-thead">Registration Date</th>
+        <th scope="col" class="custom-thead">Participant Name</th>
+        <th scope="col" class="custom-thead">Participant Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="event-item"
+        *ngFor="let participant of participants; let i = index"
+      >
+        <th scope="row" class="custom-tbody">{{ i + 1 }}</th>
+        <td class="custom-tbody" [title]="participant.participantId">
+          {{
+            participant.participantId.length > 36
+              ? participant.participantId.slice(0, 36) + "..."
+              : participant.participantId
+          }}
+        </td>
+        <td class="custom-tbody" [title]="participant.registrationCode">
+          {{
+            participant.registrationCode.length > 36
+              ? participant.registrationCode.slice(0, 36) + "..."
+              : participant.registrationCode
+          }}
+        </td>
+        <td class="custom-tbody" [title]="participant.registrationDate">
+          {{ participant.registrationDate }}
+        </td>
+        <td class="custom-tbody" [title]="participant.user.name">
+          {{ participant.user.name }}
+        </td>
+        <td class="custom-tbody" [title]="participant.user.email">
+          {{
+            participant.user.email.length > 36
+              ? participant.user.email.slice(0, 36) + "..."
+              : participant.user.email
+          }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

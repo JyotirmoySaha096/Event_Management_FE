@@ -30,11 +30,15 @@ export class UserDashboardComponent {
         if (state.isLoggedIn && this.userId && state.authToken == this.userId) {
           this.userService.getUserById(this.userId).subscribe((user: User) => {
             this.user = user;
-            this.eventService.getEvents().subscribe((events) => {
-              this.events = events[
-                '$values' as keyof EventRecord[]
-              ] as unknown as EventRecord[];
-            });
+            if (this.user.role.roleName == 'Organizer') {
+              this.router.navigate(['/organizer/' + this.userId]);
+            } else {
+              this.eventService.getEvents().subscribe((events) => {
+                this.events = events[
+                  '$values' as keyof EventRecord[]
+                ] as unknown as EventRecord[];
+              });
+            }
           });
         } else {
           this.router.navigate(['/']);

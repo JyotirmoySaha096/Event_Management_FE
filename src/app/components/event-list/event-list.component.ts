@@ -49,6 +49,6 @@ export class EventListComponent {
     //   })
   }
   handleShowParticipants(eventId: number) {
-    this.router.navigate(['/register/participants'],{queryParams:{eventId:eventId}});
+    this.router.navigate(['/participants'],{queryParams:{eventId:eventId}});
   }
 }
