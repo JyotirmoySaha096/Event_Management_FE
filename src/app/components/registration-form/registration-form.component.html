@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container p-4">
   <h2 class="text-center mb-4">Create Registration Form</h2>
 
   <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
@@ -25,29 +25,15 @@
         class="mb-4"
       >
         <div class="mb-3">
-          <label class="form-label">{{ field.get("fieldName")?.value }}</label>
+          <label class="form-label">New Text Field</label>
 
-          <!-- Text Input Field -->
-          <div *ngIf="field.get('fieldType')?.value === 'text'">
+          <!-- Text Input/Dropdown Field Name -->
+          <div>
             <input
-              formControlName="fieldValue"
+              formControlName="fieldName"
               class="form-control"
-              [type]="
-                field.get('fieldType')?.value === 'text' ? 'text' : 'hidden'
-              "
+              type="text"
             />
-          </div>
-
-          <!-- Dropdown Field -->
-          <div *ngIf="field.get('fieldType')?.value === 'dropdown'">
-            <select formControlName="fieldValue" class="form-select">
-              <option
-                *ngFor="let option of field.get('fieldOptions')?.value"
-                [value]="option.fieldOptionValue"
-              >
-                {{ option.fieldOptionValue }}
-              </option>
-            </select>
           </div>
 
           <button

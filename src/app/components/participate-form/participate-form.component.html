@@ -1,9 +1,10 @@
-<form [formGroup]="participationForm" (ngSubmit)="onSubmit()">
+<div class="container mt-5 p-4">
+  <form [formGroup]="participationForm" (ngSubmit)="onSubmit()">
     <div formArrayName="formFields">
       <div *ngFor="let field of formFields; let i = index">
         <div [formGroupName]="i">
           <label class="form-label">{{ field.get("fieldName")?.value }}</label>
-  
+
           <!-- Text Input Field -->
           <div *ngIf="field.get('fieldType')?.value === 'text'">
             <input
@@ -12,7 +13,7 @@
               type="text"
             />
           </div>
-  
+
           <!-- Dropdown Field -->
           <div *ngIf="field.get('fieldType')?.value === 'dropdown'">
             <select formControlName="fieldValue" class="form-select">
@@ -27,6 +28,12 @@
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    <button
+      type="submit"
+      class="btn btn-primary mt-3"
+      *ngIf="formFields.length !== 0"
+    >
+      Submit
+    </button>
   </form>
-  
+</div>

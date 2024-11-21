@@ -1,0 +1,5 @@
+.container{
+    background-color: var(--form-purple-bg);
+    color: var(--form-purple-color);
+    border-radius: 1rem;
+}

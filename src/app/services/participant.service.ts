@@ -21,6 +21,7 @@ export class ParticipantService {
     return this.http.get(`${this.apiURL}?eventId=${eventId}&userId=${userId}`);
   }
   postParticipant(participant:any){
+    console.log(participant)
     return this.http.post(this.apiURL,participant);
   }
 }
